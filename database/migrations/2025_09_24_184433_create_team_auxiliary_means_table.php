@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('group_id')->constrained();
             $table->foreignId('auxiliary_means_games_id')->constrained();
-            $table->boolean('is_used')->default('false');
+            $table->boolean('is_used')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

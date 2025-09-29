@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubscriptionFeature extends Model
 {
-    public function subscription(){
+    protected $fillable = [
+
+        'subscription_id',
+        'feature_name',
+    ];
+
+    public function subscription()
+    {
         return $this->belongsTo(Subscription::class);
     }
 }

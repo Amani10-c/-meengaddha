@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscription extends Model
 {
+
+    protected $fillable = [
+
+        'stat_date',
+        'end_date',
+        'status',
+        'user_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

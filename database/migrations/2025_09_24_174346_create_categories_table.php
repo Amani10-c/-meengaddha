@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('category_name');
             $table->string('photo');
             $table->foreignId('collection_id')->constrained();
-            $table->boolean('need_subscription');
+            $table->boolean('need_subscription')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
