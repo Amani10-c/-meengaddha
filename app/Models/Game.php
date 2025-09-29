@@ -6,29 +6,43 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    
-    public function user(){
+    protected $fillable = [
+
+        'user_id',
+        'group_id',
+        'group_point_id',
+        'team_time_id',
+
+    ];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function group(){
+    public function group()
+    {
         return $this->belongsTo(Group::class);
     }
 
-    public function teamTime(){
+    public function teamTime()
+    {
         return $this->belongsTo(TeamTime::class);
     }
 
-    public function groupPoint(){
+    public function groupPoint()
+    {
         return $this->belongsTo(GroupPoint::class);
     }
 
 
-    public function auxiliaryMeansGames(){
+    public function auxiliaryMeansGames()
+    {
         return $this->hasMany(AuxiliaryMeansGame::class);
     }
 
-    public function categoryGames(){
+    public function categoryGames()
+    {
         return $this->hasMany(CategoryGame::class);
     }
 }

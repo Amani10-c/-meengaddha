@@ -6,11 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeamTime extends Model
 {
-    public function group(){
+    protected $fillable = [
+
+        'team_time_1',
+        'team_time_2',
+
+    ];
+
+    public function group()
+    {
         return $this->belongsTo(Group::class);
     }
 
-    public function game(){
+    public function game()
+    {
         return $this->hasOne(Game::class);
     }
 }

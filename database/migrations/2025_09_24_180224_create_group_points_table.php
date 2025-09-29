@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('group_points', function (Blueprint $table) {
             $table->id();
             $table->integer('team_point_1');
-            $table->integer('team_point 2');
+            $table->integer('team_point_2');
             $table->foreignId('group_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
