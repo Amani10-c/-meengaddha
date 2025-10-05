@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->integer('point');
             $table->enum('difficulty_level', ['3', '4', '5', '6']);
             $table->text('question_text');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
