@@ -10,7 +10,8 @@ class Category extends Model
         'category_name',
         'photo',
         'collection_id',
-        'need_subscription'
+        'need_subscription',
+        'created_at'
     ];
 
     public function collection()

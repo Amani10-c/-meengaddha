@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CollectionResource;
+use App\Models\Category;
 use App\Models\Collection;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        //
+        $collection = Collection::with('categories')->get();
+        return CollectionResource::collection($collection);
     }
 
     /**
