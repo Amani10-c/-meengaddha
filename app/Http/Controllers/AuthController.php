@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class AuthController extends Controller
 {
-
-public function register(Request $request){
-
-    $request->validate([
-        'email'=>'required|string|email|max:255|unique:user,email',
-        'password'=>'required|string|min:8|confirmed'
-    ]);
+public function register(RegisterRequest $request)
+{
     $user=User::create([
         'email'=>$request->email,
         'password'=>FacadesHash::make($request->password),
@@ -27,17 +25,12 @@ public function register(Request $request){
         'User'=>$user
     ,201]);
     }   
-
-public function login (Request $request) {
-        $request->validate([
-        'email'=>'required|string|email',
-        'password'=>'required|string'
-    ]);
+public function login (LoginRequest $request) {
     if(!Auth::attempt($request->only('email','password')))
     return response()->json([
         'message'=>'invalid email or password']
         ,401);
-        $user=User::where('email',$request->email)->firstOrFail();
+        $user=User::where('email',$request->email)->FirstOrFail();
         $token=$user->createToken('auth_Token')->plainTextToken;
             return response()->json([
         'massage'=>'login Succsessful',
