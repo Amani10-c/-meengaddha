@@ -78,5 +78,13 @@ class CategorySeeder extends Seeder
             'collection_id' => '1',
             'need_subscription' => false
         ]);
+
+            Category::create([
+            'id' => '9',
+            'category_name' => ' رياضه سعوديه',
+            'photo' => '',
+            'collection_id' => '2',
+            'need_subscription' => false
+        ]);
     }
 }

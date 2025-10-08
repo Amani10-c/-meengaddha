@@ -17,5 +17,10 @@ class CollectionSeeder extends Seeder
             'id' => '1',
             'name' => 'السعودية'
         ]);
+
+         Collection::create([
+            'id' => '2',
+            'name' => 'رياضة'
+        ]);
     }
 }
