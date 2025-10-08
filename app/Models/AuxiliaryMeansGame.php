@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class AuxiliaryMeansGame extends Model
+class AuxiliaryMeansGame extends Base
 {
-        use SoftDeletes;
-
     protected $fillable = [
         'game_id',
         'auxiliary_means_id'

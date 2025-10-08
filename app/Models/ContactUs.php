@@ -2,18 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class ContactUs extends Model
+class ContactUs extends Base
 {
-        use SoftDeletes;
-
     protected $fillable = [
-
         'user_id',
         'message',
-
     ];
 
     public function user()

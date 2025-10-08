@@ -2,15 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class TeamAuxiliaryMean extends Model
+class TeamAuxiliaryMean extends Base
 {
-        use SoftDeletes;
-
     protected $fillable = [
-
         'group_id',
         'auxiliary_means_games_id',
         'is_used',

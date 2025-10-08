@@ -2,20 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Game extends Model
+class Game extends Base
 {
-        use SoftDeletes;
-
     protected $fillable = [
-
         'user_id',
         'group_id',
         'group_point_id',
         'team_time_id',
-
     ];
 
     public function user()

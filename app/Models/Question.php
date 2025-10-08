@@ -2,15 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Question extends Model
+class Question extends Base
 {
-        use SoftDeletes;
-
-       protected $fillable = [
-
+    protected $fillable = [
         'category_id',
         'type_question',
         'answer',
@@ -19,7 +13,8 @@ class Question extends Model
         'question_text',
         'image_path'
     ];
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 }
