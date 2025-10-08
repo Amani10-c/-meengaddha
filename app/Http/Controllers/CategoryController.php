@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\select;
 
 class CategoryController extends Controller
 {
@@ -12,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::orderBy('created_at', 'desc')->take(5)->get();
+        return CategoryResource::collection($category);
     }
 
     /**
@@ -61,5 +65,15 @@ class CategoryController extends Controller
     public function destroy(category $category)
     {
         //
+    }
+    public function updatePhoto(Request $request, Category $category)
+    {
+        $photo = $request->input('photo');
+        $category->update([
+            'photo' => $photo
+        ]);
+        return response()->json([
+            'data' => $category
+        ]);
     }
 }
