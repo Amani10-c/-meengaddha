@@ -2,15 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class ContactMethod extends Model
+class ContactMethod extends Base
 {
-        use SoftDeletes;
-
     protected $fillable = [
-
         'method_name',
         'method_value',
         'contact_information_id'

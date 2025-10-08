@@ -2,17 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class TeamTime extends Model
+class TeamTime extends Base
 {
-    use SoftDeletes;
     protected $fillable = [
-
         'team_time_1',
         'team_time_2',
-
     ];
 
     public function group()

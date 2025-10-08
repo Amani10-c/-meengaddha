@@ -2,25 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class GroupPoint extends Model
+class GroupPoint extends Base
 {
-        use SoftDeletes;
-
-         protected $fillable = [
-
+    protected $fillable = [
         'team_point_1',
         'team_point_2',
         'group_id',
     ];
-   
-    public function group(){
+
+    public function group()
+    {
         return $this->belongsTo(Group::class);
     }
-public function game(){
-    return $this->hasOne(Game::class);
-}
-    
+    public function game()
+    {
+        return $this->hasOne(Game::class);
+    }
+
 }

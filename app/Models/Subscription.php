@@ -2,15 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Subscription extends Model
+class Subscription extends Base
 {
-    use SoftDeletes;
-
     protected $fillable = [
-
         'stat_date',
         'end_date',
         'status',
