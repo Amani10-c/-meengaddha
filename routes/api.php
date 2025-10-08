@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\GroupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,6 @@ Route::post('updatePhoto/{category}',[CategoryController::class,'updatePhoto']);
 
 
 Route::get('collection',[CollectionController::class,'index']);
+
+
+Route::post('creationGroup',[GroupController::class,'creationGroup'])->middleware('auth:sanctum');

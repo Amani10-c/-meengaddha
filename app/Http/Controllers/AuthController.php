@@ -15,16 +15,15 @@ class AuthController extends Controller
 {
 public function register(RegisterRequest $request)
 {
-    $user=User::create([
-        'email'=>$request->email,
-        'password'=>FacadesHash::make($request->password),
-        'name'=>$request->name
-    ]);
+    $data = $request->validated();
+    $user=User::create(  $data);
+
     return response()->json([
         'massage'=>'User registered Succsessfully',
         'User'=>$user
     ,201]);
     }   
+    
 public function login (LoginRequest $request) {
     if(!Auth::attempt($request->only('email','password')))
     return response()->json([

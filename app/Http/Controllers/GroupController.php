@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GroupRequest;
+use App\Models\Game;
 use App\Models\Group;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -61,5 +64,21 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         //
+    }
+    public function creationGroup(GroupRequest $request)
+    {
+
+        $group = Group::create([
+            'name_game' => $request->name_game,
+            'team_1' => $request->team_1,
+            'team_2' => $request->team_2,
+            'Number_of_questions' => $request->Number_of_questions,
+        ]);
+        $game = Game::create([
+            'user_id' => auth()->id(),
+            'group_id' => $group->id,
+        ]);
+        $game->categoryGames()->attach($request->category_id);
+
     }
 }

@@ -22,6 +22,6 @@ class Category extends Base
     }
     public function categoryGames()
     {
-        return $this->hasMany(CategoryGame::class);
+        return $this->belongsToMany(CategoryGame::class,'category_games','game_id','category_id');
     }
 }
