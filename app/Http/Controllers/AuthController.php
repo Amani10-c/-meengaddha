@@ -50,13 +50,17 @@ $request->user()->currentAccessToken()->delete();
         'massage'=>'logout Succsessful']);
     }
 
-    public function update(UpdateRequest $request,$id)
+    public function update(UpdateRequest $request)
     {
-        $user=User::findOrFail($id);
-        $user->update($request->all());
-        return response()->json($user,200);
+        $user = $request->user();  
+
+        $user->name  = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return response()->json(['message' => 'User information updated successfully.'], 200);
     }
-            public function reset(ResetPasswordRequest $request)
+     public function reset(ResetPasswordRequest $request)
     {
         $user = User::where('email', $request->email)->first();
 

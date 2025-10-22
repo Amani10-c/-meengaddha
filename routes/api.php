@@ -18,7 +18,7 @@ Route::post("login", [AuthController::class,'login']);
 Route::post("logout", [AuthController::class,'logout'])->middleware('auth:sanctum');
 Route::post('CreateContact', [ContactUsController::class, 'CreateContact']);
 Route::get('ContactShow', [ContactUsController::class, 'ContactShow']);
-Route::put('update/{id}', [AuthController::class,'update']);
+Route::put('update', [AuthController::class,'update'])->middleware('auth:sanctum');
 //Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink']);
 Route::post('reset', [AuthController::class, 'reset'])->middleware('auth:sanctum');
 
