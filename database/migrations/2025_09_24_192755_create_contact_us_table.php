@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+             $table->string('name');
+            $table->string('email')->unique();
             $table->text('message');
             $table->timestamps();
             $table->softDeletes();
