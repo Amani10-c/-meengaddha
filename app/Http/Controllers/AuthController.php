@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash as FacadesHash;
+use Illuminate\Support\Facades\Password;
+use App\Http\Requests\ResetPasswordRequest;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class AuthController extends Controller
 {
@@ -44,4 +50,27 @@ $request->user()->currentAccessToken()->delete();
         'massage'=>'logout Succsessful']);
     }
 
+    public function update(UpdateRequest $request,$id)
+    {
+        $user=User::findOrFail($id);
+        $user->update($request->all());
+        return response()->json($user,200);
+    }
+            public function reset(ResetPasswordRequest $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Email not found.'
+            ], 404);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json([
+            'message' => 'Password has been reset successfully.'
+        ], 200);
+    }
 }
