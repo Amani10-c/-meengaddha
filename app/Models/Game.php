@@ -40,6 +40,6 @@ class Game extends Base
 
     public function categoryGames()
     {
-        return $this->belongsToMany(CategoryGame::class,'category_games','game_id','category_id');
+        return $this->belongsToMany(Category::class,'category_games','game_id','category_id');
     }
 }
