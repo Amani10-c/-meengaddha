@@ -5,12 +5,10 @@ namespace App\Models;
 class ContactUs extends Base
 {
     protected $fillable = [
-        'user_id',
+        'name',
+        'email',
         'message',
     ];
+public $timestamps= true;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
