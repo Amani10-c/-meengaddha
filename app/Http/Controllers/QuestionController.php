@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionRequest;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -61,5 +62,18 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    public function question(QuestionRequest $request)
+    {
+        $category_id = $request->category_id;
+        $point = $request->point;
+
+        $question = Question::select('question_text', 'image_path')->where('category_id', $category_id)
+            ->where('point', $point)
+            ->take(1)
+            ->get();
+
+        return $question;
     }
 }

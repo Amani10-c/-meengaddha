@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\GroupRequest;
 use App\Models\Game;
 use App\Models\Group;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
@@ -29,9 +30,27 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GroupRequest $request)
     {
-        //
+
+        $group = Group::create([
+            'name_game' => $request->name_game,
+            'team_1' => $request->team_1,
+            'team_2' => $request->team_2,
+            'Number_of_questions' => $request->Number_of_questions,
+        ]);
+
+        $game = Game::create([
+            'user_id' => auth()->id(),
+            'group_id' => $group->id,
+        ]);
+        $game->categoryGames()->attach($request->category_id);
+
+        return response()->json([
+            'status' => 'success',
+            'messages' => 'ok',
+
+        ]);
     }
 
     /**
@@ -65,20 +84,5 @@ class GroupController extends Controller
     {
         //
     }
-    public function creationGroup(GroupRequest $request)
-    {
 
-        $group = Group::create([
-            'name_game' => $request->name_game,
-            'team_1' => $request->team_1,
-            'team_2' => $request->team_2,
-            'Number_of_questions' => $request->Number_of_questions,
-        ]);
-        $game = Game::create([
-            'user_id' => auth()->id(),
-            'group_id' => $group->id,
-        ]);
-        $game->categoryGames()->attach($request->category_id);
-
-    }
 }

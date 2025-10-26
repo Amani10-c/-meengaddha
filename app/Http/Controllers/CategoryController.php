@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Console\Concerns\CreatesMatchingTest;
 use Illuminate\Http\Request;
 use function Laravel\Prompts\select;
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::orderBy('created_at', 'desc')->take(5)->get();
+        $category = Category::orderBy('created_at', 'desc')->take(8)->get();
         return CategoryResource::collection($category);
     }
 
